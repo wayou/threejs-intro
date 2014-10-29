@@ -1,0 +1,18 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source code pro', 'Open Sans', "Helvetica Neue", Helvetica, "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+}
+.deck-status, .deck-prev-link, .deck-next-link {
+    display: none!important;
+}
+#slide-3 {
+    background: url('../asset/threejs-back.jpg');
+}
+canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+pre {
+border: none!important;
+}

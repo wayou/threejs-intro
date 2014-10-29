@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=1024, user-scalable=no">
 
-  <title>three.js 和它的3d世界</title>
+  <title>Three.js 和它的3d世界</title>
 
   <!-- Required stylesheet -->
   <link rel="stylesheet" media="screen" href="core/deck.core.css">
@@ -21,10 +21,13 @@
   <link rel="stylesheet" media="screen" href="themes/style/neon.css">
 
   <!-- Transition theme. More available in /themes/transition/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+  <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
 
   <!-- Basic black and white print styles -->
   <link rel="stylesheet" media="print" href="core/print.css">
+
+
+  <link rel="stylesheet" href="style/main.css">
 
   <!-- Required Modernizr file -->
   <script src="modernizr.custom.js"></script>
@@ -35,16 +38,53 @@
     <!-- Begin slides. Just make elements with a class of slide. -->
 
     <section class="slide">
-      <h1>Slide</h1>
+      <div id="demo-container"></div>
+      <h1>Three.js 简介</h1>
     </section>
 
     <section class="slide">
-      <h1>Content</h1>
+    <h2>&nbsp;</h2>
+      <a href="http://get.webgl.org/" target="_blank"><img src="asset/webgl-logo.svg"></a>
     </section>
 
     <section class="slide">
-      <h1>Here</h1>
+    <h2>&nbsp;</h2>
+      <a href="http://caniuse.com/#feat=webgl" target="_blank"><img src="asset/threejs-com.jpg" /></a>
     </section>
+
+    <section class="slide">
+      <h1> <a href="http://threejs.org/"  target="_blank">mrdoob/three.js</a> </h1>
+    </section>
+
+    <section class="slide">
+   <pre style='color:#d1d1d1;background:#000000;'><html><body style='color:#d1d1d1; background:#000000; '><pre>
+<span style='color:#e66170; font-weight:bold; '>var</span> scene<span style='color:#d2cd86; '>,</span> camera<span style='color:#d2cd86; '>,</span> renderer<span style='color:#b060b0; '>;</span>
+   <span style='color:#e66170; font-weight:bold; '>var</span> geometry<span style='color:#d2cd86; '>,</span> material<span style='color:#d2cd86; '>,</span> mesh<span style='color:#b060b0; '>;</span>
+   init<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   animate<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+
+   <span style='color:#e66170; font-weight:bold; '>function</span> init<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+       scene <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>Scene<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       camera <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>PerspectiveCamera<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>75</span><span style='color:#d2cd86; '>,</span> window<span style='color:#d2cd86; '>.</span>innerWidth <span style='color:#d2cd86; '>/</span> window<span style='color:#d2cd86; '>.</span>innerHeight<span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>10000</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       camera<span style='color:#d2cd86; '>.</span>position<span style='color:#d2cd86; '>.</span>z <span style='color:#d2cd86; '>=</span> <span style='color:#008c00; '>1000</span><span style='color:#b060b0; '>;</span>
+       geometry <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>BoxGeometry<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       material <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>MeshNormalMaterial<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       mesh <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>Mesh<span style='color:#d2cd86; '>(</span>geometry<span style='color:#d2cd86; '>,</span> material<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       scene<span style='color:#d2cd86; '>.</span>add<span style='color:#d2cd86; '>(</span>mesh<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       renderer <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>WebGLRenderer<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       renderer<span style='color:#d2cd86; '>.</span>setSize<span style='color:#d2cd86; '>(</span>window<span style='color:#d2cd86; '>.</span>innerWidth<span style='color:#d2cd86; '>,</span> window<span style='color:#d2cd86; '>.</span>innerHeight<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       document<span style='color:#d2cd86; '>.</span>body<span style='color:#d2cd86; '>.</span>appendChild<span style='color:#d2cd86; '>(</span>renderer<span style='color:#d2cd86; '>.</span>domElement<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   <span style='color:#b060b0; '>}</span>
+
+   <span style='color:#e66170; font-weight:bold; '>function</span> animate<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+       requestAnimationFrame<span style='color:#d2cd86; '>(</span>animate<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       mesh<span style='color:#d2cd86; '>.</span>rotation<span style='color:#d2cd86; '>.</span>x <span style='color:#d2cd86; '>+=</span> <span style='color:#009f00; '>0.01</span><span style='color:#b060b0; '>;</span>
+       mesh<span style='color:#d2cd86; '>.</span>rotation<span style='color:#d2cd86; '>.</span>y <span style='color:#d2cd86; '>+=</span> <span style='color:#009f00; '>0.02</span><span style='color:#b060b0; '>;</span>
+       renderer<span style='color:#d2cd86; '>.</span>render<span style='color:#d2cd86; '>(</span>scene<span style='color:#d2cd86; '>,</span> camera<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   <span style='color:#b060b0; '>}</span>
+</pre>
+    </section>
+
 
     <!-- End slides. -->
 
@@ -84,6 +124,8 @@
 <script src="extensions/status/deck.status.js"></script>
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/scale/deck.scale.js"></script>
+<script src="scripts/three.min.js"></script>
+<script src="scripts/main.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
