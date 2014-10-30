@@ -1,79 +1,255 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Threejs-intro : ">
+  <title>Three.js 和它的3d世界</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
 
-    <title>Threejs-intro</title>
-  </head>
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
 
-  <body>
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/neon.css">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/wayou/threejs-intro">View on GitHub</a>
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
 
-          <h1 id="project_title">Threejs-intro</h1>
-          <h2 id="project_tagline"></h2>
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/wayou/threejs-intro/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/wayou/threejs-intro/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+  <link rel="stylesheet" href="style/main.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <div id="demo-container"></div>
+      <h1>Three.js <br/>和它的3d世界</h1>
+    </section>
+
+    <section class="slide">
+    <h2>&nbsp;</h2>
+      <a href="http://get.webgl.org/" target="_blank"><img src="asset/webgl-logo.svg"></a>
+    </section>
+
+    <section class="slide">
+    <h2>&nbsp;</h2>
+      <a href="http://caniuse.com/#feat=webgl" target="_blank"><img src="asset/threejs-com.jpg" /></a>
+    </section>
+
+    <section class="slide">
+      <h1> <a href="http://threejs.org/"  target="_blank">mrdoob/three.js</a> </h1>
+    </section>
+
+    <section class="slide">
+   <pre style='color:#d1d1d1;background:#000000;'><html><body style='color:#d1d1d1; background:#000000; '><pre>
+<span style='color:#e66170; font-weight:bold; '>var</span> scene<span style='color:#d2cd86; '>,</span> camera<span style='color:#d2cd86; '>,</span> renderer<span style='color:#b060b0; '>;</span>
+   <span style='color:#e66170; font-weight:bold; '>var</span> geometry<span style='color:#d2cd86; '>,</span> material<span style='color:#d2cd86; '>,</span> mesh<span style='color:#b060b0; '>;</span>
+   init<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   animate<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+
+   <span style='color:#e66170; font-weight:bold; '>function</span> init<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+       scene <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>Scene<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       camera <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>PerspectiveCamera<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>75</span><span style='color:#d2cd86; '>,</span> window<span style='color:#d2cd86; '>.</span>innerWidth <span style='color:#d2cd86; '>/</span> window<span style='color:#d2cd86; '>.</span>innerHeight<span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>1</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>10000</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       camera<span style='color:#d2cd86; '>.</span>position<span style='color:#d2cd86; '>.</span>z <span style='color:#d2cd86; '>=</span> <span style='color:#008c00; '>1000</span><span style='color:#b060b0; '>;</span>
+       geometry <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>BoxGeometry<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>,</span> <span style='color:#008c00; '>200</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       material <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>MeshNormalMaterial<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       mesh <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>Mesh<span style='color:#d2cd86; '>(</span>geometry<span style='color:#d2cd86; '>,</span> material<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       scene<span style='color:#d2cd86; '>.</span>add<span style='color:#d2cd86; '>(</span>mesh<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       renderer <span style='color:#d2cd86; '>=</span> <span style='color:#e66170; font-weight:bold; '>new</span> THREE<span style='color:#d2cd86; '>.</span>WebGLRenderer<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       renderer<span style='color:#d2cd86; '>.</span>setSize<span style='color:#d2cd86; '>(</span>window<span style='color:#d2cd86; '>.</span>innerWidth<span style='color:#d2cd86; '>,</span> window<span style='color:#d2cd86; '>.</span>innerHeight<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       document<span style='color:#d2cd86; '>.</span>body<span style='color:#d2cd86; '>.</span>appendChild<span style='color:#d2cd86; '>(</span>renderer<span style='color:#d2cd86; '>.</span>domElement<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   <span style='color:#b060b0; '>}</span>
+
+   <span style='color:#e66170; font-weight:bold; '>function</span> animate<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span> <span style='color:#b060b0; '>{</span>
+       requestAnimationFrame<span style='color:#d2cd86; '>(</span>animate<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+       mesh<span style='color:#d2cd86; '>.</span>rotation<span style='color:#d2cd86; '>.</span>x <span style='color:#d2cd86; '>+=</span> <span style='color:#009f00; '>0.01</span><span style='color:#b060b0; '>;</span>
+       mesh<span style='color:#d2cd86; '>.</span>rotation<span style='color:#d2cd86; '>.</span>y <span style='color:#d2cd86; '>+=</span> <span style='color:#009f00; '>0.02</span><span style='color:#b060b0; '>;</span>
+       renderer<span style='color:#d2cd86; '>.</span>render<span style='color:#d2cd86; '>(</span>scene<span style='color:#d2cd86; '>,</span> camera<span style='color:#d2cd86; '>)</span><span style='color:#b060b0; '>;</span>
+   <span style='color:#b060b0; '>}</span>
+</pre>
+    </section>
+   
+    <section class="slide">
+    <h2>坐标系/Axis</h2>
+      <img src="asset/axis.jpg">
+    </section>
+
+    <section class="slide">
+    <h2>镜头/Camera</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/camera.png"></a>
+    </section>
+
+      <section class="slide">
+    <h2>透视镜头/Perspective camera</h2>
+      <pre>PerspectiveCamera( fov, aspect, near, far )</pre>
+       <ul>
+        <li>fov (field of view)</li>
+        <li>aspect</li>
+        <li>near</li>
+        <li>far</li>
+      </ul>
+    </section>
+
+     <section class="slide">
+     <h2>透视镜头/Perspective camera</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/dota2.jpg"></a>
+    </section>
+     <section class="slide">
+     <h2>透视镜头/Perspective camera</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/cs.jpg"></a>
+    </section>
+    <section class="slide">
+    <h2>平行镜头/Orthographic cameraa</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/camera2.png"></a>
+    </section>
+
+   <section class="slide">
+    <h2>平行镜头/Orthographic camera</h2>
+      <pre>OrthographicCamera( left, right, top, bottom, near, far )</pre>
+      <ul>
+        <li>left</li>
+        <li>right</li>
+        <li>top</li>
+        <li>bottom</li>
+        <li>near</li>
+        <li>far</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+     <h2>平行镜头/Orthographic camera</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/starcraft.jpg"></a>
+    </section>
+     <section class="slide">
+     <h2>平行镜头/Orthographic camera</h2>
+      <a target="_blank" href="asset/samples/chapter-02/07-both-cameras.html"><img src="asset/mhxy.jpg"></a>
+    </section>
+ 
+
+    <section class="slide">
+    <h1>
+    <a href="asset/samples/chapter-02/01-basic-scene.html" target="_blank">场景/Scene</a>
+    </h1>
+    </section>
+
+
+    <section class="slide">
+    <h2>
+    <a href="asset/samples/chapter-02/04-geometries.html" target="_blank">物体/Geometry</a>
+    </h2>
+
+    <ul>
+      <li>立方体/Cube</li>
+      <li>球体/Sphere</li>
+      <li>平面/Plane</li>
+      <li>多面体/Polygon</li>
+      <li> <a href="asset/samples/chapter-02/05-custom-geometry.html">自定义物体/Custom</a> </li>
+      <li>../etc...</li>
+    </ul>
+    </section>
+
+
+    <section class="slide">
+    <h2>
+    <a href="asset/samples/chapter-02/04-geometries.html" target="_blank">材质/Material</a>
+    </h2>
+
+    <ul>
+      <li> <a href="asset/samples/chapter-04/01-basic-mesh-material.html">基础材质/Basic mesh material</a> </li>
+      <li> <a href="asset/samples/chapter-04/04-mesh-normal-material.html">常规材质/Mesh normal material</a> </li>
+      <li> <a href="asset/samples/chapter-04/06-mesh-lambert-material.html">兰伯材质/Lambert material</a> </li>
+      <li> <a href="asset/samples/chapter-04/07-mesh-phong-material.html">Phong材质/Phong material</a> </li>
+      <li> <a href="asset/samples/chapter-04/08-shader-material.html">自定义顶点着色器的材质/Shader material</a> </li>
+      <li>../etc...</li>
+    </ul>
+    </section>
+
+     <section class="slide">
+    <h2>
+    <a href="asset/samples/chapter-02/04-geometries.html" target="_blank">灯光/Lighth</a>
+    </h2>
+
+    <ul>
+      <li> <a href="asset/samples/chapter-03/01-ambient-light.html">环境光/Ambient light</a> </li> 
+      <li> <a href="asset/samples/chapter-03/03-spot-light.html">点光源/Spot light</a> </li> 
+      <li> <a href="asset/samples/chapter-03/03-point-light.html">单一点光源/Point light</a> </li> 
+      <li> <a href="asset/samples/chapter-03/06-area-light.html">范围光/Area light</a> </li> 
+      <li>../etc...</li>
+    </ul>
+    </section>
+
+     <section class="slide">
+    <h2>
+   渲染器/Renderer
+    </h2>
+    <ul>
+      <li>WebGL Renderer</li> 
+      <li>Canvas Renderer</li> 
+    </ul>
+    </section>
+
+
+     <section class="slide">
+      <h1>动画/Animation</h1>
+    </section>
+
+
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+    <!-- End extension snippets. -->
+  </div>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Threejs-intro maintained by <a href="https://github.com/wayou">wayou</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+<script src="scripts/three.min.js"></script>
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script src="scripts/main.js"></script>
+</body>
 </html>
